@@ -43,9 +43,20 @@ public class Task4 {
 
         for (int i=0; i<list.size(); i++){
 
-            driver.findElement(By.className("list-vertical")).findElements(By.className("name")).get(i).click();
-            Assert.assertTrue("Not found" , isPresent(By.cssSelector("h1")));
+            driver.findElement(By.className("list-vertical")).findElements(By.id("app-")).get(i).click();
+//            Assert.assertTrue("Not found" , isPresent(By.cssSelector("h1")));
 
+            List <WebElement> sub = driver.findElement(By.className("list-vertical")).findElements(By.id("app-")).get(i).findElements(By.className("name"));
+
+            if(sub.size() >1){
+
+                for(int k=0; k<sub.size(); k++)
+                driver.findElement(By.className("list-vertical")).findElements(By.id("app-")).get(i).findElements(By.className("name")).get(k).click();
+                Assert.assertTrue("Not found" , isPresent(By.cssSelector("h1")));
+
+            }
+
+            Assert.assertTrue("Not found" , isPresent(By.cssSelector("h1")));
         }
 
     }
